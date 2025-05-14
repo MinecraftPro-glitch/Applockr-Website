@@ -55,14 +55,15 @@
       overflow: hidden;
       border-radius: 16px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      overflow: hidden;
     }
 
     .carousel-track {
       display: flex;
-      scroll-snap-type: x mandatory;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scroll-behavior: smooth;
+      width: 100%;
+      will-change: transform;
+      transform: translateX(0);
+      transition: transform 1.5s ease-in-out;
     }
 
     .carousel-track img {
@@ -213,12 +214,32 @@
 
     .timeline {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: relative;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
       margin: 2rem auto 1rem;
       max-width: 800px;
-      padding: 0 1rem;
+    }
+
+    .event {
+      text-align: center;
+      width: 160px;
+    }
+
+    .event .dot {
+      width: 16px;
+      height: 16px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      margin: 0 auto;
+      border: 3px solid white;
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+
+    .event p {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--primary);
     }
 
     .roadmap .more {
@@ -244,29 +265,6 @@
     .roadmap .more a:hover {
       background-color: #005bb5;
     }
-
-    .event {
-      position: relative;
-      text-align: center;
-      width: 25%;
-      z-index: 1;
-    }
-
-    .event .dot {
-      width: 16px;
-      height: 16px;
-      background-color: var(--accent);
-      border-radius: 50%;
-      margin: 0 auto;
-      border: 3px solid white;
-      box-shadow: 0 0 0 2px var(--accent);
-    }
-
-    .event p {
-      margin-top: 0.5rem;
-      font-size: 0.9rem;
-      color: var(--primary);
-    }
   </style>
 </head>
 <body>
@@ -278,7 +276,6 @@
     <p>The easiest way to lock and password-protect your apps on Mac.</p>
   </header>
 
-  <!-- Carousel with dots -->
   <div class="carousel-container">
     <div class="carousel-track" id="carousel">
       <img src="screenshot.jpg" alt="Screenshot 1">
@@ -309,23 +306,19 @@
       <div class="timeline">
         <div class="event">
           <div class="dot"></div>
-          <p>Apple Watch 
-            Authentication</p>
+          <p>Apple Watch Authentication</p>
         </div>
         <div class="event">
           <div class="dot"></div>
-          <p>Lock already 
-            launched apps</p>
+          <p>Lock Already Launched Apps</p>
         </div>
         <div class="event">
           <div class="dot"></div>
-          <p>Lock apps 
-            by location</p>
+          <p>Lock Apps by Location</p>
         </div>
         <div class="event">
           <div class="dot"></div>
-          <p>Lock apps 
-            by schedule</p>
+          <p>Lock Apps by Schedule</p>
         </div>
       </div>
       <div class="more">
@@ -336,13 +329,13 @@
   </section>
 
   <section class="warning">
-    <strong>Note:</strong> We do not have an Apple Developer Account. The app may be flagged by macOS gaetekeeper. If you dont trust us, please do not download the app.
+    <strong>Note:</strong> We do not have an Apple Developer Account, so macOS Gatekeeper might show a warning when opening the app. This doesn’t mean the app is unsafe — it’s a common message for independent developers. If you're unsure, feel free to check out the source code or contact us with any questions.
   </section>
 
   <section id="about" class="about">
     <h2>About AppLockr</h2>
     <p>
-      AppLockr was built with ❤️ by a Mac users, for Mac users. Whether you're sharing your Mac, working in public, or just want peace of mind—
+      AppLockr was built with ❤️ by a Mac user, for Mac users. Whether you're sharing your Mac, working in public, or just want peace of mind—
       this lightweight utility ensures that only you can open the apps you care about.
     </p>
   </section>
@@ -371,6 +364,17 @@
       dots.forEach(dot => dot.classList.remove('active'));
       if (dots[index]) dots[index].classList.add('active');
     });
+
+    // Auto-scroll carousel every 5 seconds
+    let currentIndex = 0;
+
+    function autoScrollCarousel() {
+      currentIndex = (currentIndex + 1) % images.length;
+      carousel.style.transition = 'transform 1.5s ease-in-out';
+      carousel.style.transform = `translateX(-${carousel.clientWidth * currentIndex}px)`;
+    }
+
+    setInterval(autoScrollCarousel, 5000);
   </script>
 </body>
 </html>
