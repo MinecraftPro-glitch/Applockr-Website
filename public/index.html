@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AppLockr – Lock Your Mac Apps</title>
+  <style>
+    :root {
+      --primary: #1c1c1e;
+      --accent: #007aff;
+      --text-light: #666;
+      --bg: #f7f8fa;
+      --button-bg: #f0f0f5;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--primary);
+      line-height: 1.6;
+      padding-top: 3.5rem;
+    }
+
+    header {
+      text-align: center;
+      padding: 5rem 1rem 2rem;
+      background-color: var(--white);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .carousel-container {
+      position: relative;
+      max-width: 800px;
+      margin: 2rem auto;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .carousel-track {
+      display: flex;
+      scroll-snap-type: x mandatory;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+    }
+
+    .carousel-track img {
+      flex: 0 0 100%;
+      width: 100%;
+      height: auto;
+      scroll-snap-align: center;
+      object-fit: contain;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .carousel-dots {
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    .carousel-dots span {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background-color: #ccc;
+      border-radius: 50%;
+      margin: 0 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    .carousel-dots span.active {
+      background-color: var(--accent);
+    }
+
+    .buttons {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      margin: 0.5rem;
+      font-size: 1rem;
+      border-radius: 12px;
+      background: var(--button-bg);
+      border: 1px solid #ccc;
+      cursor: pointer;
+      transition: 0.3s ease;
+      text-decoration: none;
+      color: var(--primary);
+    }
+
+    .button:hover {
+      background: #e6e6eb;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+      transform: translateY(-1px);
+    }
+
+    section {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+
+    .features h2,
+    .about h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .features ul {
+      text-align: left;
+      list-style: none;
+      padding: 0;
+    }
+
+    .features li {
+      padding: 0.5rem 0;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .features li::before {
+      content: '✓';
+      color: var(--accent);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    .warning {
+      background: #fff3cd;
+      color: #856404;
+      padding: 1rem;
+      border-radius: 10px;
+      border: 1px solid #ffeeba;
+      margin-top: 2rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    .sticky-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--white);
+      color: var(--primary);
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      font-size: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      .button {
+        width: 100%;
+        max-width: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sticky-bar">AppLockr</div>
+
+  <header>
+    <h1>AppLockr</h1>
+    <p>The easiest way to lock and password-protect your apps on Mac.</p>
+  </header>
+
+  <!-- Carousel with dots -->
+  <div class="carousel-container">
+    <div class="carousel-track" id="carousel">
+      <img src="screenshot.jpg" alt="Screenshot 1">
+      <img src="screenshot2.jpg" alt="Screenshot 2">
+      <img src="screenshot3.jpg" alt="Screenshot 3">
+      <img src="screenshot4.jpg" alt="Screenshot 4">
+    </div>
+    <div class="carousel-dots" id="dots"></div>
+  </div>
+
+  <div class="buttons">
+    <a href="https://bitlinkerstudio.gumroad.com/l/AppLockr" class="button">Buy Now</a>
+    <a href="mailto:applockrmm@gmail.com" class="button">Contact Us</a>
+    <button class="button" onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' })">Learn More</button>
+  </div>
+
+  <section class="features">
+    <h2>Key Features</h2>
+    <ul>
+      <li>Password-lock any app without changing system settings or permissions</li>
+      <li>Works natively on macOS – no bulky background processes</li>
+      <li>No ads, no tracking — just what you need</li>
+      <li>Simple one-time purchase – all features included</li>
+    </ul>
+  </section>
+
+  <section class="warning">
+    <strong>Note:</strong> We do not have an Apple Developer Account. The app may be flagged by macOS. The full source code is available on GitHub if you want to review or compile it yourself.
+  </section>
+
+  <section id="about" class="about">
+    <h2>About AppLockr</h2>
+    <p>
+      AppLockr was built with ❤️ by a Mac users, for Mac users. Whether you're sharing your Mac, working in public, or just want peace of mind—
+      this lightweight utility ensures that only you can open the apps you care about.
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 AppLockr. All rights reserved.
+  </footer>
+
+  <script>
+    const carousel = document.getElementById('carousel');
+    const dotsContainer = document.getElementById('dots');
+    const images = carousel.querySelectorAll('img');
+
+    images.forEach((_, index) => {
+      const dot = document.createElement('span');
+      if (index === 0) dot.classList.add('active');
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = dotsContainer.querySelectorAll('span');
+
+    carousel.addEventListener('scroll', () => {
+      const scrollLeft = carousel.scrollLeft;
+      const width = carousel.clientWidth;
+      const index = Math.round(scrollLeft / width);
+      dots.forEach(dot => dot.classList.remove('active'));
+      if (dots[index]) dots[index].classList.add('active');
+    });
+  </script>
+</body>
+</html>
