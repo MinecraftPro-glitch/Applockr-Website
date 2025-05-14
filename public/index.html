@@ -9,7 +9,7 @@
       --primary: #1c1c1e;
       --accent: #007aff;
       --text-light: #666;
-      --bg: #f7f8fa;
+      --bg: #cdd9f2c8;
       --button-bg: #f0f0f5;
       --white: #ffffff;
     }
@@ -31,7 +31,7 @@
     header {
       text-align: center;
       padding: 5rem 1rem 2rem;
-      background-color: var(--white);
+      background-color: var(--bg);
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     }
 
@@ -49,7 +49,8 @@
 
     .carousel-container {
       position: relative;
-      max-width: 800px;
+      height:600px;
+      max-width: 1000px;
       margin: 2rem auto;
       overflow: hidden;
       border-radius: 16px;
@@ -171,7 +172,8 @@
       top: 0;
       left: 0;
       width: 100%;
-      background: var(--white);
+      height: 3.5rem;
+      background: var(--bg);
       color: var(--primary);
       padding: 0.5rem 1rem;
       font-weight: bold;
@@ -192,6 +194,78 @@
         width: 100%;
         max-width: 250px;
       }
+    }
+
+    .roadmap {
+      margin-top: 3rem;
+      text-align: center;
+      background-color: #b4c7eea0;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .roadmap h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .timeline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      margin: 2rem auto 1rem;
+      max-width: 800px;
+      padding: 0 1rem;
+    }
+
+    .roadmap .more {
+      margin-top: 2rem;
+    }
+
+    .roadmap .more p {
+      margin-bottom: 1rem;
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+
+    .roadmap .more a {
+      background-color: var(--accent);
+      color: white;
+      padding: 0.6rem 1.5rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+    }
+
+    .roadmap .more a:hover {
+      background-color: #005bb5;
+    }
+
+    .event {
+      position: relative;
+      text-align: center;
+      width: 25%;
+      z-index: 1;
+    }
+
+    .event .dot {
+      width: 16px;
+      height: 16px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      margin: 0 auto;
+      border: 3px solid white;
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+
+    .event p {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--primary);
     }
   </style>
 </head>
@@ -226,13 +300,43 @@
     <ul>
       <li>Password-lock any app without changing system settings or permissions</li>
       <li>Works natively on macOS – no bulky background processes</li>
+      <li>Lightweight and fast – less than 1MB download</li>
       <li>No ads, no tracking — just what you need</li>
-      <li>Simple one-time purchase – all features included</li>
+      <li>Simple, one-time purchase – all features included as well as lifetime updates</li>
     </ul>
+    <div class="roadmap">
+      <h3>Coming Soon</h3>
+      <div class="timeline">
+        <div class="event">
+          <div class="dot"></div>
+          <p>Apple Watch 
+            Authentication</p>
+        </div>
+        <div class="event">
+          <div class="dot"></div>
+          <p>Lock already 
+            launched apps</p>
+        </div>
+        <div class="event">
+          <div class="dot"></div>
+          <p>Lock apps 
+            by location</p>
+        </div>
+        <div class="event">
+          <div class="dot"></div>
+          <p>Lock apps 
+            by schedule</p>
+        </div>
+      </div>
+      <div class="more">
+        <p>And much more, follow development and suggest features here!</p>
+        <a href="https://discord.gg/FQSBtaDMYj" target="_blank">Join our Discord</a>
+      </div>
+    </div>
   </section>
 
   <section class="warning">
-    <strong>Note:</strong> We do not have an Apple Developer Account. The app may be flagged by macOS. The full source code is available on GitHub if you want to review or compile it yourself.
+    <strong>Note:</strong> We do not have an Apple Developer Account. The app may be flagged by macOS gaetekeeper. If you dont trust us, please do not download the app.
   </section>
 
   <section id="about" class="about">
